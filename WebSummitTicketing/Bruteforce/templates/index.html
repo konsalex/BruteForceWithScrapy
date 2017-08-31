@@ -1,0 +1,41 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <form>
+            {% csrf_token %}
+            First name:<br>
+            
+            <input id="coupon" type="text" name="coupon" method="POST">
+            <br>
+            <br>
+            <button id="submit">
+            
+        </form>
+        
+        
+        <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+        
+        <script>
+        $("#submit").click(function() {
+            
+            var form = $(this).closest("form");
+        
+            $.ajax({
+                type: "POST",
+                url: '/ajax/coupon/',
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                console.log(data.success)
+        }});
+        
+        
+        });
+        </script>
+    </body>
+</html>
